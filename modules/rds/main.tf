@@ -1,5 +1,5 @@
 resource "aws_db_instance" "default" {
-  identifier = "rds-terraform"
+  identifier           = "rds-terraform"
   allocated_storage    = 10
   db_name              = "mydb"
   engine               = "mysql"
