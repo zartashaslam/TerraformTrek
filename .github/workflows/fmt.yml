@@ -1,4 +1,4 @@
-name: Fix terraform file formatting
+name: Fix terraform formatting 
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   lint:
     runs-on: ubuntu-20.04
@@ -18,7 +19,8 @@ jobs:
       - uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
-      - name: Terraform fmr
+
+      - name: Terraform fmt
         id: fmt
         run: terraform fmt -check -recursive
         continue-on-error: false
