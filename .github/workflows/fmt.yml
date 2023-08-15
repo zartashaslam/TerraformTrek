@@ -1,13 +1,11 @@
-name: Fix terraform formatting 
+name: Fix terraform formatting
 
 on:
-  push:
-    branches:
-      - main
-
   pull_request:
+    types: [opened, synchronize, reopened, edited]
     branches:
       - main
+      - QA
 
 jobs:
   lint:
