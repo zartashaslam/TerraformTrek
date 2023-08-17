@@ -1,17 +1,25 @@
-on: 
+on:
     workflow_dispatch:
       inputs:
-        logLevel:
-          description: 'Log level'     
-          required: true
-          default: 'warning'
-        tags:
-          description: 'Test scenario tags'  
-
+        es:
+          type: boolean
+          default: false
+          description: Use Repo 1?
+        dr:
+          type: boolean
+          default: false
+          description: Use Repo 2?
 jobs:
-  printInputs:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Log level: ${{ github.event.inputs.logLevel }}"
-        echo "Tags: ${{ github.event.inputs.tags }}" 
+    es-job:
+      name: Repo 1 Job
+      runs-on: ubuntu-latest
+      if: github.event.inputs.es == 'true'
+      steps:
+        - run: echo "some repo 1 job"
+    
+    dr-job:
+      name: Repo 2 Job
+      runs-on: ubuntu-latest
+      if: github.event.inputs.dr == 'true'
+      steps:
+        - run: echo "some repo 2 job"
