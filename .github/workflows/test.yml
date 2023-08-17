@@ -39,7 +39,7 @@ jobs:
          - name: Common Steps
            id: common
            uses: ./.github/actions/common-steps
-           
+
          - name: Data scinec job 
            id: build-ds-data
            run: |
