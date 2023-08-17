@@ -9,38 +9,41 @@ on:
           type: boolean
           default: false
           description: Use Repo 2?
-jobs:
+  
+  jobs:
     common-steps:
-        name: Common Steps
-        runs-on: ubuntu-latest
-        steps:
-          - name: common workflow test 
-            run: |
-              echo This is my test common workflow 
+      name: Common Steps
+      runs-on: ubuntu-latest
+      steps:
+        - name: common workflow test 
+          run: |
+            echo This is my test common workflow 
+  
     es-job:
       name: Repo 1 Job
       runs-on: ubuntu-latest
-      if: github.event.inputs.es == 'true'
+      if: ${{ github.event.inputs.es == 'true' }}
       steps:
          - name: Common Steps
            id: common
            uses: ./.github/actions/common-steps
-
+  
          - name: Elasticsearch job 
            id: build-image-elasticsearch
            run: |
               echo This is Repo 1 Job 
-    
+  
     dr-job:
       name: Repo 2 Job
       runs-on: ubuntu-latest
-      if: github.event.inputs.dr == 'true'
+      if: ${{ github.event.inputs.dr == 'true' }}
       steps:
          - name: Common Steps
            id: common
            uses: ./.github/actions/common-steps
-
-         - name: Data scinec job 
+         
+         - name: Data science job 
            id: build-ds-data
            run: |
-              echo This is Repo 2 Job 
+              echo This is Repo 2 Job
+  
