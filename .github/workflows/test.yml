@@ -22,15 +22,25 @@ jobs:
       runs-on: ubuntu-latest
       if: github.event.inputs.es == 'true'
       steps:
-        - extends: common-steps
-          run: |
-            echo Some repo 1 job 
+         - name: Common Steps
+           id: common
+           uses: ./.github/actions/common-steps
+
+         - name: Elasticsearch job 
+           id: build-image-elasticsearch
+           run: |
+              echo This is Repo 1 Job 
     
     dr-job:
       name: Repo 2 Job
       runs-on: ubuntu-latest
       if: github.event.inputs.dr == 'true'
       steps:
-        - extends: common-steps
-          run: |
-            echo Some repo 2 job 
+         - name: Common Steps
+           id: common
+           uses: ./.github/actions/common-steps
+           
+         - name: Data scinec job 
+           id: build-ds-data
+           run: |
+              echo This is Repo 2 Job 
