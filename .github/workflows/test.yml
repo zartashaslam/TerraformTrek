@@ -23,7 +23,8 @@ jobs:
       if: github.event.inputs.es == 'true'
       steps:
         - extends: common-steps
-        - run: echo "some repo 1 job"
+          run: |
+            echo Some repo 1 job 
     
     dr-job:
       name: Repo 2 Job
@@ -31,4 +32,5 @@ jobs:
       if: github.event.inputs.dr == 'true'
       steps:
         - extends: common-steps
-        - run: echo "some repo 2 job"
+          run: |
+            echo Some repo 2 job 
