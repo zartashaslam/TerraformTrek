@@ -9,8 +9,8 @@ on:
           type: boolean
           default: false
           description: Use Repo 2?
-  
-  jobs:
+
+jobs:
     common-steps:
       name: Common Steps
       runs-on: ubuntu-latest
