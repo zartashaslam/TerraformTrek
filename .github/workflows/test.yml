@@ -9,17 +9,29 @@ on:
           type: boolean
           default: false
           description: Use Repo 2?
+env:
+    ACCOUNT_ID: 574426117464
+    REGION: us-west-2
+    ENV: dev
 jobs:
     es-job:
-      name: Repo 1 Job
+      name: ElasticSearch Job
       runs-on: ubuntu-latest
+      permissions:
+        id-token: write
+        contents: read
+      environment: dev
       if: github.event.inputs.es == 'true'
       steps:
-        - run: echo "some repo 1 job"
+        
     
     dr-job:
-      name: Repo 2 Job
+      name: Direct Reference Job
       runs-on: ubuntu-latest
+      permissions:
+        id-token: write
+        contents: read
+      environment: dev
       if: github.event.inputs.dr == 'true'
       steps:
         - run: echo "some repo 2 job"
