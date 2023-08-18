@@ -1,26 +1,32 @@
 on:
-    workflow_dispatch:
-      inputs:
-        es:
-          type: boolean
-          default: false
-          description: Use Repo 1?
-        dr:
-          type: boolean
-          default: false
-          description: Use Repo 2?
-          
-jobs:
-        es-job:
-          name: Repo 1 Job
-          runs-on: ubuntu-latest
-          if: github.event.inputs.es == 'true'
-          steps:
-            - run: echo "some repo 1 job"
+  workflow_dispatch:
+    inputs:
+      es:
+        type: boolean
+        default: false
+        description: Use Repo 1?
+      dr:
+        type: boolean
+        default: false
+        description: Use Repo 2?
+      environment:
+        description: 'Define env name dev or live'      
+        required: true  
+env: 
+ENV: ${{ github.event.inputs.environment }}
     
-        dr-job:
-          name: Repo 2 Job
-          runs-on: ubuntu-latest
-          if: github.event.inputs.dr == 'true'
-          steps:
-            - run: echo "some repo 2 job"
+jobs:
+      es-job:
+        name: Repo 1 Job
+        runs-on: ubuntu-latest
+        if: github.event.inputs.es == 'true'
+        steps:
+          - run: echo ${{ env.ENV }}
+
+  
+      dr-job:
+        name: Repo 2 Job
+        runs-on: ubuntu-latest
+        if: github.event.inputs.dr == 'true'
+        steps:
+          - run: echo "some repo 2 job"
