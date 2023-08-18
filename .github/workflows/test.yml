@@ -16,9 +16,16 @@ env:
   ENV: ${{ github.event.inputs.environment }}
     
 jobs:
+      common-job:
+        name: Repo 1 Job
+        runs-on: ubuntu-latest
+        steps:
+          - run: echo 'This is commmon job'
+
       es-job:
         name: Repo 1 Job
         runs-on: ubuntu-latest
+        needs: common-job
         if: github.event.inputs.es == 'true'
         steps:
           - run: echo ${{ env.ENV }}
@@ -27,6 +34,7 @@ jobs:
       dr-job:
         name: Repo 2 Job
         runs-on: ubuntu-latest
+        needs: common-job
         if: github.event.inputs.dr == 'true'
         steps:
           - run: echo "some repo 2 job"
